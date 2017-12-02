@@ -17,6 +17,7 @@
 		14E382781FD2BC32007AB299 /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E382721FD2BC32007AB299 /* SearchRouter.swift */; };
 		14E382791FD2BC32007AB299 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E382731FD2BC32007AB299 /* SearchViewController.swift */; };
 		14E3827A1FD2BC32007AB299 /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E382741FD2BC32007AB299 /* SearchWorker.swift */; };
+		14E382801FD2CDD3007AB299 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3827F1FD2CDD3007AB299 /* APIRouter.swift */; };
 		76D884316D330423890285C3 /* Pods_GitHub_search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE882CF90475986E1CF62806 /* Pods_GitHub_search.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		14E382721FD2BC32007AB299 /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		14E382731FD2BC32007AB299 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		14E382741FD2BC32007AB299 /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
+		14E3827F1FD2CDD3007AB299 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		93671754C9929F1D5FC76DF6 /* Pods-GitHub search.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub search.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHub search/Pods-GitHub search.debug.xcconfig"; sourceTree = "<group>"; };
 		AE882CF90475986E1CF62806 /* Pods_GitHub_search.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_search.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85BE1225815933F163D91A0 /* Pods-GitHub search.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub search.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHub search/Pods-GitHub search.release.xcconfig"; sourceTree = "<group>"; };
@@ -71,7 +73,8 @@
 		14E3825B1FD2BACF007AB299 /* GitHub search */ = {
 			isa = PBXGroup;
 			children = (
-				14E3826E1FD2BC08007AB299 /* Search */,
+				14E3827B1FD2CC9F007AB299 /* Scenes */,
+				14E3827C1FD2CCBE007AB299 /* Services */,
 				14E3825C1FD2BACF007AB299 /* AppDelegate.swift */,
 				14E382601FD2BACF007AB299 /* Main.storyboard */,
 				14E382631FD2BACF007AB299 /* Assets.xcassets */,
@@ -92,6 +95,38 @@
 				14E382741FD2BC32007AB299 /* SearchWorker.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		14E3827B1FD2CC9F007AB299 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				14E3826E1FD2BC08007AB299 /* Search */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		14E3827C1FD2CCBE007AB299 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				14E3827D1FD2CCD7007AB299 /* Networking */,
+				14E3827E1FD2CCE4007AB299 /* Storage */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		14E3827D1FD2CCD7007AB299 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				14E3827F1FD2CDD3007AB299 /* APIRouter.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		14E3827E1FD2CCE4007AB299 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		8107954A2E6DDDFF14D341A4 /* Pods */ = {
@@ -253,6 +288,7 @@
 				14E382781FD2BC32007AB299 /* SearchRouter.swift in Sources */,
 				14E3825D1FD2BACF007AB299 /* AppDelegate.swift in Sources */,
 				14E382771FD2BC32007AB299 /* SearchPresenter.swift in Sources */,
+				14E382801FD2CDD3007AB299 /* APIRouter.swift in Sources */,
 				14E3827A1FD2BC32007AB299 /* SearchWorker.swift in Sources */,
 				14E382761FD2BC32007AB299 /* SearchModels.swift in Sources */,
 			);
