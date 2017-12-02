@@ -31,7 +31,12 @@ enum Search {
         
         struct Response {}
         
-        struct ViewModel {}
+        struct ViewModel {
+            let title: String
+            let text: String
+            let cancel: String
+            let login: String
+        }
     }
     
     enum SelectRepo {

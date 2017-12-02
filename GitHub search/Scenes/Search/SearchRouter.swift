@@ -8,8 +8,19 @@
 
 import UIKit
 
+extension SearchRouter {
+    
+    private static let _browserSegue = "MVCBrowserViewController"
+    
+    private static let _loginSegue = "LoginViewController"
+}
+
 protocol SearchRoutingLogic {
+    
     func routeToBrowser()
+    
+    func routeToAuth()
+    
     func prepareForNextScene(segue: UIStoryboardSegue)
 }
 
@@ -22,12 +33,14 @@ final class SearchRouter: SearchRoutingLogic, SearchDataPassing {
     weak var viewController: SearchViewController?
     var dataStore: SearchDataStore?
     
-    private static let _browserSegue = "MVCBrowserViewController"
-    
     // MARK: - Routing
     
     func routeToBrowser() {
         viewController?.performSegue(withIdentifier: SearchRouter._browserSegue, sender: nil)
+    }
+    
+    func routeToAuth() {
+        viewController?.performSegue(withIdentifier: SearchRouter._loginSegue, sender: nil)
     }
     
     func prepareForNextScene(segue: UIStoryboardSegue) {

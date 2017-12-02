@@ -47,7 +47,7 @@ final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     }
     
     func verifyUserAuth(_ request: Search.Auth.Request) {
-        
+        presenter?.presentAuth(.init())
     }
     
     func didSelectRepo(_ request: Search.SelectRepo.Request) {

@@ -8,11 +8,21 @@
 
 import UIKit
 
+extension SearchPresenter {
+    
+    fileprivate static let _authTitle = "Auth"
+    fileprivate static let _authText = "You need to login first to search repositories"
+    fileprivate static let _cancelBtn = "Cancel"
+    fileprivate static let _loginBtn = "Login"
+}
+
 protocol SearchPresentationLogic {
     
     func presentRepos(_ response: Search.Repository.Response)
     
     func presentBrowser(_ response: Search.SelectRepo.Response)
+    
+    func presentAuth(_ response: Search.Auth.Response)
 }
 
 final class SearchPresenter: SearchPresentationLogic {
@@ -29,6 +39,16 @@ final class SearchPresenter: SearchPresentationLogic {
     
     func presentBrowser(_ response: Search.SelectRepo.Response) {
         viewController?.displayBrowser(.init())
+    }
+    
+    func presentAuth(_ response: Search.Auth.Response) {
+        
+        let viewModel = Search.Auth.ViewModel(title: SearchPresenter._authTitle,
+                                              text: SearchPresenter._authText,
+                                              cancel: SearchPresenter._cancelBtn,
+                                              login: SearchPresenter._loginBtn)
+        
+        viewController?.displayAuthAlert(viewModel)
     }
 }
 

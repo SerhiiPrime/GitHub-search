@@ -11,6 +11,72 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Login View Controller-->
+        <scene sceneID="rCQ-J4-Tnm">
+            <objects>
+                <viewController id="VfM-b4-hNv" customClass="LoginViewController" customModule="GitHub_search" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0Yg-Zq-HdQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yfx-S2-l1M">
+                                <rect key="frame" x="34" y="147" width="307" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="JDY-Z7-neF"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IcJ-CH-Xgd">
+                                <rect key="frame" x="34" y="205" width="307" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="kBk-gc-qre"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="adY-Xm-XBU">
+                                <rect key="frame" x="77" y="256" width="220" height="30"/>
+                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="220" id="GcD-un-tce"/>
+                                    <constraint firstAttribute="height" constant="30" id="vRa-vo-Tuh"/>
+                                </constraints>
+                                <state key="normal" title="Login"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="res-jp-Vrj">
+                                <rect key="frame" x="16" y="20" width="39" height="30"/>
+                                <state key="normal" title="Close"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="res-jp-Vrj" firstAttribute="top" secondItem="oKk-U7-lyx" secondAttribute="top" id="5az-KS-y3g"/>
+                            <constraint firstItem="yfx-S2-l1M" firstAttribute="top" secondItem="oKk-U7-lyx" secondAttribute="top" constant="127" id="SoD-qL-5W9"/>
+                            <constraint firstItem="adY-Xm-XBU" firstAttribute="centerX" secondItem="0Yg-Zq-HdQ" secondAttribute="centerX" id="eGr-Pj-AUg"/>
+                            <constraint firstItem="yfx-S2-l1M" firstAttribute="leading" secondItem="oKk-U7-lyx" secondAttribute="leading" constant="34" id="i5O-UM-rrS"/>
+                            <constraint firstItem="IcJ-CH-Xgd" firstAttribute="top" secondItem="yfx-S2-l1M" secondAttribute="bottom" constant="28" id="icC-Ie-BOF"/>
+                            <constraint firstItem="oKk-U7-lyx" firstAttribute="trailing" secondItem="IcJ-CH-Xgd" secondAttribute="trailing" constant="34" id="ige-7C-g4n"/>
+                            <constraint firstItem="adY-Xm-XBU" firstAttribute="top" secondItem="IcJ-CH-Xgd" secondAttribute="bottom" constant="21" id="lnY-2V-h5a"/>
+                            <constraint firstItem="oKk-U7-lyx" firstAttribute="trailing" secondItem="yfx-S2-l1M" secondAttribute="trailing" constant="34" id="pKb-VW-qHs"/>
+                            <constraint firstItem="IcJ-CH-Xgd" firstAttribute="leading" secondItem="oKk-U7-lyx" secondAttribute="leading" constant="34" id="t28-yK-zTr"/>
+                            <constraint firstItem="res-jp-Vrj" firstAttribute="leading" secondItem="oKk-U7-lyx" secondAttribute="leading" constant="16" id="txQ-2j-Dk6"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oKk-U7-lyx"/>
+                    </view>
+                    <connections>
+                        <outlet property="closeButton" destination="res-jp-Vrj" id="zpA-Da-ENn"/>
+                        <outlet property="loginButton" destination="adY-Xm-XBU" id="VjR-Iw-cXC"/>
+                        <outlet property="passwordTextField" destination="IcJ-CH-Xgd" id="gyx-60-Ria"/>
+                        <outlet property="usernameTextField" destination="yfx-S2-l1M" id="PYZ-Ij-jPJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NhL-kD-c7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="477.60000000000002" y="-568.06596701649175"/>
+        </scene>
         <!--Github search-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -107,6 +173,7 @@
                         <outlet property="searchBar" destination="gIc-kd-kVy" id="pBt-RN-wbe"/>
                         <outlet property="tableView" destination="JCc-1T-fXB" id="tLN-z4-HmM"/>
                         <segue destination="N8F-Pi-kwr" kind="presentation" identifier="MVCBrowserViewController" modalTransitionStyle="crossDissolve" id="Lwp-di-qj1"/>
+                        <segue destination="VfM-b4-hNv" kind="presentation" identifier="LoginViewController" id="t9O-Lx-0eC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

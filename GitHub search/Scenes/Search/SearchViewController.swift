@@ -15,6 +15,8 @@ protocol SearchDisplayLogic: class {
     func updateTableWithModels(_ viewModel: Search.Repository.ViewModel)
     
     func displayBrowser(_ viewModel: Search.SelectRepo.ViewModel)
+    
+    func displayAuthAlert(_ viewModel: Search.Auth.ViewModel)
 }
 
 final class SearchViewController: UIViewController, SearchDisplayLogic {
@@ -79,6 +81,24 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
     
     func displayBrowser(_ viewModel: Search.SelectRepo.ViewModel) {
         router?.routeToBrowser()
+    }
+    
+    func displayAuthAlert(_ viewModel: Search.Auth.ViewModel) {
+        
+        let alert = UIAlertController(title: viewModel.title,
+                                      message: viewModel.text,
+                                      preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: viewModel.cancel, style: .cancel, handler: nil)
+        
+        let logInAction = UIAlertAction(title: viewModel.login, style: .default) { [weak self] _ in
+            self?.router?.routeToAuth()
+        }
+        
+        alert.addAction(logInAction)
+        alert.addAction(cancelAction)
+        alert.preferredAction = logInAction
+        present(alert, animated: true)
     }
     
     // MARK: - Private
