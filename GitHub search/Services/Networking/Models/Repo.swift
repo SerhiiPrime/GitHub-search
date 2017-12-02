@@ -8,6 +8,18 @@
 
 import Foundation
 
-struct Repo {
+struct Repo: Decodable {
     
+    let id: UInt
+    
+    let name: String
+    
+    let htmlURLString: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case name = "name"
+        case htmlURLString = "html_url"
+    }
 }
+

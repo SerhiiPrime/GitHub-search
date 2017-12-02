@@ -76,6 +76,7 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
     
     private func _setupSearchBar() {
         let searchText = searchBar.rx.text.orEmpty
+            .skip(1)
             .throttle(0.3, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
         

@@ -7,10 +7,17 @@
 //
 
 import Foundation
+import RxSwift
 
 final class SearchWorker {
 
-    // func doSomeWork() {
-
-    // }
+    private let _service: NetworkServiceProtocol
+    
+    init(service: NetworkServiceProtocol = NetworkService.shared) {
+        _service = service
+    }
+    
+    func loadRepos(_ query: String) -> Observable<[Repo]> {        
+        return _service.getRepos(query)
+    }
 }

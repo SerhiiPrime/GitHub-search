@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol SearchBusinessLogic {
     
@@ -22,12 +23,18 @@ protocol SearchDataStore {
 final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
 
     var presenter: SearchPresentationLogic?
-    var worker: SearchWorker?
+    var worker = SearchWorker()
+    
+    private let _disposeBag = DisposeBag()
 
     // MARK: - Business logic
 
     func searchRepo(request: Search.Repo.Request) {
-        
+        worker.loadRepos(request.name)
+            .subscribe(onNext: { repos in
+                print("---------")
+                print(repos)
+            }).disposed(by: _disposeBag)
     }
     
     func verifyUserAuth(request: Search.Auth.Request) {
