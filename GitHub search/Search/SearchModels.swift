@@ -9,21 +9,24 @@
 import UIKit
 
 enum Search {
-
-    // MARK: Use cases
-
-    enum Something {
+    
+    enum Repo {
 
         struct Request {
-
+            let name: String
         }
 
-        struct Response {
+        struct Response {}
 
-        }
-
-        struct ViewModel {
-
-        }
+        struct ViewModel {}
+    }
+    
+    enum Auth {
+        
+        struct Request {}
+        
+        struct Response {}
+        
+        struct ViewModel {}
     }
 }

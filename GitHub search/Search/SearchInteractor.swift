@@ -9,27 +9,28 @@
 import Foundation
 
 protocol SearchBusinessLogic {
-    // func doSomething(request: Search.Something.Request)
+    
+    func searchRepo(request: Search.Repo.Request)
+    
+    func verifyUserAuth(request: Search.Auth.Request)
 }
 
 protocol SearchDataStore {
     // var name: String { get set }
 }
 
-final class SearchInteractor: SearchBusinessLogic,
-                                                SearchDataStore {
+final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
 
     var presenter: SearchPresentationLogic?
     var worker: SearchWorker?
-    // var name: String = ""
 
     // MARK: - Business logic
 
-    // func doSomething(request: Search.Something.Request) {
-    //   worker = SearchWorker()
-    //   worker?.doSomeWork()
-
-    //   let response = Search.Something.Response()
-    //   presenter?.presentSomething(response: response)
-    // }
+    func searchRepo(request: Search.Repo.Request) {
+        
+    }
+    
+    func verifyUserAuth(request: Search.Auth.Request) {
+        
+    }
 }

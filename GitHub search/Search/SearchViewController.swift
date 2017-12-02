@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 protocol SearchDisplayLogic: class {
     // func displaySomething(viewModel: Search.Something.ViewModel)
@@ -21,6 +23,8 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
     var interactor: SearchBusinessLogic?
     var router: (SearchRoutingLogic & SearchDataPassing)?
 
+    private let _disposeBag = DisposeBag()
+    
     // MARK: - Lifecycle
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -37,7 +41,7 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        _setupSearchBar()
     }
 
     // MARK: - Setup
@@ -67,4 +71,26 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
     // func displaySomething(viewModel: Search.Something.ViewModel) {
     //
     // }
+    
+    // MARK: - Private
+    
+    private func _setupSearchBar() {
+        let searchText = searchBar.rx.text.orEmpty
+            .throttle(0.3, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+        
+        searchText.subscribe(onNext: { [weak self] text in
+            self?.interactor?.searchRepo(request: .init(name: text))
+        }).disposed(by: _disposeBag)
+    }
 }
+
+extension SearchViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        interactor?.verifyUserAuth(request: .init())
+    }
+}
+
+
+
