@@ -26,7 +26,6 @@ protocol MVCBrowserDataStore: class {
     var url: URL? { get set }
 }
 
-
 class MVCBrowserViewController: UIViewController, MVCBrowserDataPassing, MVCBrowserDataStore {
     
     @IBOutlet var webView: WKWebView!
@@ -58,12 +57,14 @@ class MVCBrowserViewController: UIViewController, MVCBrowserDataPassing, MVCBrow
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        if let url = url {
+            webView.load(URLRequest(url: url))
+        }
     }
     
+    // MARK: - Event Handling
     
     @IBAction func closeAction(_ sender: Any) {
-        
+        dismiss(animated: true, completion: nil)
     }
-    
 }
