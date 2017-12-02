@@ -75,12 +75,11 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
     // MARK: - Private
     
     private func _setupSearchBar() {
-        let searchText = searchBar.rx.text.orEmpty
+        searchBar.rx.text.orEmpty
             .skip(1)
-            .throttle(0.3, scheduler: MainScheduler.instance)
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-        
-        searchText.subscribe(onNext: { [weak self] text in
+            .subscribe(onNext: { [weak self] text in
             self?.interactor?.searchRepo(request: .init(name: text))
         }).disposed(by: _disposeBag)
     }

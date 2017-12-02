@@ -32,7 +32,7 @@ class NetworkService: NetworkServiceProtocol {
                 .request(APIRouter.getRepos(query: query))
                 .logRequest()
                 .validate()
-                .responseJSON { (response) in
+                .responseData { (response) in
                     switch response.result {
                     case .success(let data):
                         

@@ -28,13 +28,17 @@ enum APIRouter: URLRequestConvertible {
     var path: String {
         switch self {
             
-        case .getRepos(let query):
-            return "search/repositories?q=\(query)"
+        case .getRepos:
+            return "search/repositories"
         }
     }
     
     var parameters: [String: Any]? {
-        return nil
+        switch self {
+            
+        case .getRepos(let query):
+            return ["q": query]
+        }
     }
     
     var encoding: ParameterEncoding {
