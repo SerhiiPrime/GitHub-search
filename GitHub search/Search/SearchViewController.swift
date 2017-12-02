@@ -12,8 +12,7 @@ protocol SearchDisplayLogic: class {
     // func displaySomething(viewModel: Search.Something.ViewModel)
 }
 
-final class SearchViewController: UIViewController,
-                                                    SearchDisplayLogic {
+final class SearchViewController: UIViewController, SearchDisplayLogic {
 
     
     @IBOutlet var searchBar: UISearchBar!
