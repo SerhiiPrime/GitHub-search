@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SearchViewController" customModule="GitHub_search" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="gIc-kd-kVy">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="Ldj-ft-iIa"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JCc-1T-fXB">
+                                <rect key="frame" x="0.0" y="56" width="375" height="611"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JCc-1T-fXB" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8md-u8-zZP"/>
+                            <constraint firstItem="gIc-kd-kVy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9Yp-Q8-HCh"/>
+                            <constraint firstItem="JCc-1T-fXB" firstAttribute="top" secondItem="gIc-kd-kVy" secondAttribute="bottom" id="F9q-u1-j81"/>
+                            <constraint firstItem="JCc-1T-fXB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="MUb-fH-xob"/>
+                            <constraint firstItem="JCc-1T-fXB" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="XXo-Dy-Bqh"/>
+                            <constraint firstItem="gIc-kd-kVy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="aEN-dC-KvN"/>
+                            <constraint firstItem="gIc-kd-kVy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="s3d-Of-NjF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchBar" destination="gIc-kd-kVy" id="pBt-RN-wbe"/>
+                        <outlet property="tableView" destination="JCc-1T-fXB" id="tLN-z4-HmM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+</document>
