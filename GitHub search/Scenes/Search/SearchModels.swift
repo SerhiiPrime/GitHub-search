@@ -34,6 +34,17 @@ enum Search {
         struct ViewModel {}
     }
     
+    enum SelectRepo {
+        
+        struct Request {
+            let index: Int
+        }
+        
+        struct Response {}
+        
+        struct ViewModel {}
+    }
+    
     struct CellModel {
         let model: CellViewAnyModel
     }

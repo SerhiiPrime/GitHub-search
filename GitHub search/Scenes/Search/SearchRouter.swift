@@ -9,46 +9,44 @@
 import UIKit
 
 protocol SearchRoutingLogic {
-
-    // func routeToNextScene()
-
-    // func prepareForNextScene(segue: UIStoryboardSegue)
+    func routeToBrowser()
+    func prepareForNextScene(segue: UIStoryboardSegue)
 }
 
 protocol SearchDataPassing {
     var dataStore: SearchDataStore? { get }
 }
 
-final class SearchRouter: SearchRoutingLogic,
-                                            SearchDataPassing {
-
+final class SearchRouter: SearchRoutingLogic, SearchDataPassing {
+    
     weak var viewController: SearchViewController?
     var dataStore: SearchDataStore?
-
-    // MARK: - Routing
-
-    // func routeToNextScene() {
-    //     viewController?.performSegue(withIdentifier: "SomeSegueIdentifier", sender: nil)
-    // }
-
-    // func prepareForNextScene(segue: UIStoryboardSegue) {
-
-    //     switch segue.identifier {
-    //     case "SomeSegueIdentifier"?:
-    //         guard let destination = segue.destination as? SomewhereViewController,
-    //                 let sourceDataStore = dataStore,
-    //                 var destinationDataStore = destination.router?.dataStore else { break }
     
-    //             _passDataToAuthWaySMSCode(source: sourceDataStore, destination: &destinationDataStore)
-    //     default:
-    //         break
-    //     }
-    // }
-
+    private static let _browserSegue = "MVCBrowserViewController"
+    
+    // MARK: - Routing
+    
+    func routeToBrowser() {
+        viewController?.performSegue(withIdentifier: SearchRouter._browserSegue, sender: nil)
+    }
+    
+    func prepareForNextScene(segue: UIStoryboardSegue) {
+        
+        switch segue.identifier {
+        case SearchRouter._browserSegue?:
+            guard let destination = segue.destination as? MVCBrowserViewController,
+                let sourceDataStore = dataStore,
+                var destinationDataStore = destination.router?.dataStore else { break }
+            
+            _passDataToBrowser(source: sourceDataStore, destination: &destinationDataStore)
+        default:
+            break
+        }
+    }
+    
     // MARK: - Passing data
-
-    // private func _passDataToSomewhere(source: SearchDataStore,
-    //                                   destination: inout SomewhereDataStore) {
-    //    destination.name = source.name
-    // }
+    
+    private func _passDataToBrowser(source: SearchDataStore, destination: inout MVCBrowserDataStore) {
+        destination.url = source.repoUrl
+    }
 }

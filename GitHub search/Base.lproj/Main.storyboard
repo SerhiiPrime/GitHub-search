@@ -107,11 +107,71 @@
                     <connections>
                         <outlet property="searchBar" destination="gIc-kd-kVy" id="pBt-RN-wbe"/>
                         <outlet property="tableView" destination="JCc-1T-fXB" id="tLN-z4-HmM"/>
+                        <segue destination="N8F-Pi-kwr" kind="presentation" identifier="MVCBrowserViewController" id="Lwp-di-qj1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="479.19999999999999" y="133.5832083958021"/>
+        </scene>
+        <!--Browser View Controller-->
+        <scene sceneID="toM-L5-tgB">
+            <objects>
+                <viewController id="N8F-Pi-kwr" customClass="MVCBrowserViewController" customModule="GitHub_search" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="670-vO-THG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdA-SR-L1Q">
+                                <rect key="frame" x="16" y="140" width="343" height="387"/>
+                                <subviews>
+                                    <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hpn-qt-f0G">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="341"/>
+                                        <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BNJ-AZ-bAz">
+                                        <rect key="frame" x="113" y="349" width="116" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="OC6-Y9-JE5"/>
+                                            <constraint firstAttribute="width" constant="116" id="es7-8r-ztT"/>
+                                        </constraints>
+                                        <state key="normal" title="Close"/>
+                                        <connections>
+                                            <action selector="closeAction:" destination="N8F-Pi-kwr" eventType="touchUpInside" id="Bsh-Un-OEi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="BNJ-AZ-bAz" firstAttribute="centerX" secondItem="UdA-SR-L1Q" secondAttribute="centerX" id="Q5m-df-cBm"/>
+                                    <constraint firstItem="hpn-qt-f0G" firstAttribute="top" secondItem="UdA-SR-L1Q" secondAttribute="top" id="TeN-gb-lrC"/>
+                                    <constraint firstAttribute="trailing" secondItem="hpn-qt-f0G" secondAttribute="trailing" id="aaz-bH-aa5"/>
+                                    <constraint firstAttribute="bottom" secondItem="BNJ-AZ-bAz" secondAttribute="bottom" constant="8" id="e0G-qj-boG"/>
+                                    <constraint firstItem="BNJ-AZ-bAz" firstAttribute="top" secondItem="hpn-qt-f0G" secondAttribute="bottom" constant="8" id="mTI-LH-76K"/>
+                                    <constraint firstItem="hpn-qt-f0G" firstAttribute="leading" secondItem="UdA-SR-L1Q" secondAttribute="leading" id="pxx-r4-iPJ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ba4-gQ-oob" firstAttribute="trailing" secondItem="UdA-SR-L1Q" secondAttribute="trailing" constant="16" id="Oca-Lr-qEU"/>
+                            <constraint firstItem="UdA-SR-L1Q" firstAttribute="leading" secondItem="ba4-gQ-oob" secondAttribute="leading" constant="16" id="Xtd-ST-CLX"/>
+                            <constraint firstItem="UdA-SR-L1Q" firstAttribute="top" secondItem="ba4-gQ-oob" secondAttribute="top" constant="120" id="ehy-y2-isr"/>
+                            <constraint firstItem="ba4-gQ-oob" firstAttribute="bottom" secondItem="UdA-SR-L1Q" secondAttribute="bottom" constant="140" id="iN3-aX-Id4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ba4-gQ-oob"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="hpn-qt-f0G" id="gab-wU-Zfm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jpV-D6-xEx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1233" y="134"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hNa-kq-hn5">

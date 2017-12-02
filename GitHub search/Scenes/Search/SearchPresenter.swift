@@ -9,21 +9,27 @@
 import UIKit
 
 protocol SearchPresentationLogic {
-     func presentRepos(_ response: Search.Repository.Response)
+    
+    func presentRepos(_ response: Search.Repository.Response)
+    
+    func presentBrowser(_ response: Search.SelectRepo.Response)
 }
 
 final class SearchPresenter: SearchPresentationLogic {
-
+    
     weak var viewController: SearchDisplayLogic?
-
+    
     // MARK: - Presentation logic
-
+    
     func presentRepos(_ response: Search.Repository.Response) {
         
         let repos = response.repos.map { SearchPresenter._repoCellModels(repo: $0) }
         viewController?.updateTableWithModels(.init(repos: repos))
     }
     
+    func presentBrowser(_ response: Search.SelectRepo.Response) {
+        viewController?.displayBrowser(.init())
+    }
 }
 
 extension SearchPresenter {
