@@ -11,13 +11,13 @@ import RxSwift
 
 protocol SearchBusinessLogic {
     
-    func searchRepo(request: Search.Repo.Request)
+    func searchRepo(request: Search.Repository.Request)
     
     func verifyUserAuth(request: Search.Auth.Request)
 }
 
 protocol SearchDataStore {
-    // var name: String { get set }
+    
 }
 
 final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
@@ -29,12 +29,12 @@ final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
 
     // MARK: - Business logic
 
-    func searchRepo(request: Search.Repo.Request) {
+    func searchRepo(request: Search.Repository.Request) {
         worker.loadRepos(request.name)
-            .subscribe(onNext: { repos in
-                print("---------")
-                print(repos)
-            }).disposed(by: _disposeBag)
+            .subscribe(onNext: { [weak self] repos in
+                self?.presenter?.presentRepos(.init(repos: repos))
+            })
+            .disposed(by: _disposeBag)
     }
     
     func verifyUserAuth(request: Search.Auth.Request) {

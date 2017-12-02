@@ -10,15 +10,19 @@ import UIKit
 
 enum Search {
     
-    enum Repo {
+    enum Repository {
 
         struct Request {
             let name: String
         }
 
-        struct Response {}
+        struct Response {
+            let repos: [Repo]
+        }
 
-        struct ViewModel {}
+        struct ViewModel {
+            let repos: [Search.CellModel]
+        }
     }
     
     enum Auth {
@@ -28,5 +32,9 @@ enum Search {
         struct Response {}
         
         struct ViewModel {}
+    }
+    
+    struct CellModel {
+        let model: CellViewAnyModel
     }
 }

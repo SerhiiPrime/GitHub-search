@@ -23,6 +23,9 @@
 		14E382881FD2D2F6007AB299 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E382871FD2D2F6007AB299 /* Request.swift */; };
 		14E3828A1FD2D8E4007AB299 /* Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E382891FD2D8E4007AB299 /* Decoding.swift */; };
 		14E3828C1FD2D984007AB299 /* JSONDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3828B1FD2D984007AB299 /* JSONDecoder.swift */; };
+		14E3828F1FD2F230007AB299 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3828E1FD2F230007AB299 /* RepoCell.swift */; };
+		14E382921FD2F4E6007AB299 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E382911FD2F4E6007AB299 /* CellViewModel.swift */; };
+		14E382941FD2F54F007AB299 /* UITableView+DequeueReusableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E382931FD2F54F007AB299 /* UITableView+DequeueReusableCell.swift */; };
 		76D884316D330423890285C3 /* Pods_GitHub_search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE882CF90475986E1CF62806 /* Pods_GitHub_search.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +48,9 @@
 		14E382871FD2D2F6007AB299 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		14E382891FD2D8E4007AB299 /* Decoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoding.swift; sourceTree = "<group>"; };
 		14E3828B1FD2D984007AB299 /* JSONDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoder.swift; sourceTree = "<group>"; };
+		14E3828E1FD2F230007AB299 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
+		14E382911FD2F4E6007AB299 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
+		14E382931FD2F54F007AB299 /* UITableView+DequeueReusableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+DequeueReusableCell.swift"; sourceTree = "<group>"; };
 		93671754C9929F1D5FC76DF6 /* Pods-GitHub search.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub search.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GitHub search/Pods-GitHub search.debug.xcconfig"; sourceTree = "<group>"; };
 		AE882CF90475986E1CF62806 /* Pods_GitHub_search.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GitHub_search.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D85BE1225815933F163D91A0 /* Pods-GitHub search.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GitHub search.release.xcconfig"; path = "Pods/Target Support Files/Pods-GitHub search/Pods-GitHub search.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 				14E3827B1FD2CC9F007AB299 /* Scenes */,
 				14E3827C1FD2CCBE007AB299 /* Services */,
 				14E382861FD2D2D8007AB299 /* Extension */,
+				14E382901FD2F4C8007AB299 /* Utils */,
 				14E3825C1FD2BACF007AB299 /* AppDelegate.swift */,
 				14E382601FD2BACF007AB299 /* Main.storyboard */,
 				14E382631FD2BACF007AB299 /* Assets.xcassets */,
@@ -98,6 +105,7 @@
 		14E3826E1FD2BC08007AB299 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				14E3828D1FD2F20B007AB299 /* Cells */,
 				14E3826F1FD2BC32007AB299 /* SearchInteractor.swift */,
 				14E382701FD2BC32007AB299 /* SearchModels.swift */,
 				14E382711FD2BC32007AB299 /* SearchPresenter.swift */,
@@ -156,8 +164,25 @@
 			children = (
 				14E382871FD2D2F6007AB299 /* Request.swift */,
 				14E3828B1FD2D984007AB299 /* JSONDecoder.swift */,
+				14E382931FD2F54F007AB299 /* UITableView+DequeueReusableCell.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		14E3828D1FD2F20B007AB299 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				14E3828E1FD2F230007AB299 /* RepoCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		14E382901FD2F4C8007AB299 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				14E382911FD2F4E6007AB299 /* CellViewModel.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		8107954A2E6DDDFF14D341A4 /* Pods */ = {
@@ -315,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				14E382791FD2BC32007AB299 /* SearchViewController.swift in Sources */,
+				14E3828F1FD2F230007AB299 /* RepoCell.swift in Sources */,
 				14E382751FD2BC32007AB299 /* SearchInteractor.swift in Sources */,
 				14E382781FD2BC32007AB299 /* SearchRouter.swift in Sources */,
 				14E3825D1FD2BACF007AB299 /* AppDelegate.swift in Sources */,
@@ -323,8 +349,10 @@
 				14E382771FD2BC32007AB299 /* SearchPresenter.swift in Sources */,
 				14E382801FD2CDD3007AB299 /* APIRouter.swift in Sources */,
 				14E3827A1FD2BC32007AB299 /* SearchWorker.swift in Sources */,
+				14E382921FD2F4E6007AB299 /* CellViewModel.swift in Sources */,
 				14E382851FD2D1C6007AB299 /* Repo.swift in Sources */,
 				14E382821FD2CFFE007AB299 /* NetworkService.swift in Sources */,
+				14E382941FD2F54F007AB299 /* UITableView+DequeueReusableCell.swift in Sources */,
 				14E3828A1FD2D8E4007AB299 /* Decoding.swift in Sources */,
 				14E382761FD2BC32007AB299 /* SearchModels.swift in Sources */,
 			);

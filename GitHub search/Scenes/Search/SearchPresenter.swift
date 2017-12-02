@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SearchPresentationLogic {
-    // func presentSomething(response: Search.Something.Response)
+     func presentRepos(_ response: Search.Repository.Response)
 }
 
 final class SearchPresenter: SearchPresentationLogic {
@@ -18,8 +18,22 @@ final class SearchPresenter: SearchPresentationLogic {
 
     // MARK: - Presentation logic
 
-    // func presentSomething(response: Search.Something.Response) {
-    //   let viewModel = Search.Something.ViewModel()
-    //   viewController?.displaySomething(viewModel: viewModel)
-    // }
+    func presentRepos(_ response: Search.Repository.Response) {
+        
+        let repos = response.repos.map { SearchPresenter._repoCellModels(repo: $0) }
+        viewController?.updateTableWithModels(.init(repos: repos))
+    }
+    
+}
+
+extension SearchPresenter {
+    
+    fileprivate static func _repoCellModels(repo: Repo) -> Search.CellModel {
+        
+        let model = RepoCellModel(name: repo.name,
+                                  statusIsHidden: true,
+                                  urlString: repo.htmlURLString)
+        
+        return Search.CellModel(model: model)
+    }
 }

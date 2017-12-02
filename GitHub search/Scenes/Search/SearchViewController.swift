@@ -11,7 +11,8 @@ import RxCocoa
 import RxSwift
 
 protocol SearchDisplayLogic: class {
-    // func displaySomething(viewModel: Search.Something.ViewModel)
+    
+     func updateTableWithModels(_ viewModel: Search.Repository.ViewModel)
 }
 
 final class SearchViewController: UIViewController, SearchDisplayLogic {
@@ -24,6 +25,8 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
     var router: (SearchRoutingLogic & SearchDataPassing)?
 
     private let _disposeBag = DisposeBag()
+    
+    fileprivate var repos: [Search.CellModel] = []
     
     // MARK: - Lifecycle
 
@@ -68,9 +71,10 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
 
     // MARK: - Display logic
 
-    // func displaySomething(viewModel: Search.Something.ViewModel) {
-    //
-    // }
+    func updateTableWithModels(_ viewModel: Search.Repository.ViewModel) {
+        repos = viewModel.repos
+        tableView.reloadData()
+    }
     
     // MARK: - Private
     
@@ -82,6 +86,19 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
             .subscribe(onNext: { [weak self] text in
             self?.interactor?.searchRepo(request: .init(name: text))
         }).disposed(by: _disposeBag)
+    }
+}
+
+extension SearchViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return repos.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let model = repos[indexPath.row].model
+        let cell = tableView.dequeueReusableCell(withModel: model, for: indexPath)
+        return cell
     }
 }
 
