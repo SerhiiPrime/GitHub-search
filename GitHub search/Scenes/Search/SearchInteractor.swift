@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
 protocol SearchBusinessLogic {
     
@@ -25,29 +26,38 @@ protocol SearchDataStore {
 final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
 
     var presenter: SearchPresentationLogic?
-    var worker = SearchWorker()
+    var worker: SearchWorker!
     
     // MARK: - DataStore logic
     
     var repoUrl: URL?
     
     // MARK: - Private properties
-    private var repos: [Repo] = []
     private let _disposeBag = DisposeBag()
+    
+    private var reposSubscription: NotificationToken?
+    private var reposResults: Results<DBRepo>!
+    private var repos: [DBRepo] = []
+    
+    
+    init() {
+        worker = SearchWorker()
+        reposResults = worker.getAllRepos()
+        reposSubscription = notificationSubscription(result: reposResults)
+    }
 
     // MARK: - Business logic
 
     func searchRepo(_ request: Search.Repository.Request) {
         worker.loadRepos(request.name)
             .subscribe(onNext: { [weak self] repos in
-                self?.repos = repos
-                self?.presenter?.presentRepos(.init(repos: repos))
+                self?.worker.saveRepos(repos: repos)
             })
             .disposed(by: _disposeBag)
     }
     
     func verifyUserAuth(_ request: Search.Auth.Request) {
-        presenter?.presentAuth(.init())
+        //presenter?.presentAuth(.init())
     }
     
     func didSelectRepo(_ request: Search.SelectRepo.Request) {
@@ -57,5 +67,17 @@ final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
         
         repoUrl = url
         presenter?.presentBrowser(.init())
+    }
+    
+    
+    // MARK: - Notification subscription
+    //
+    func notificationSubscription(result: Results<DBRepo>) -> NotificationToken {
+        return result.addNotificationBlock {[weak self] (changes: RealmCollectionChange<Results<DBRepo>>) in
+            guard let `self` = self else { return }
+        
+            self.repos = Array(self.reposResults)
+            self.presenter?.presentRepos(.init(repos: self.repos))
+        }
     }
 }

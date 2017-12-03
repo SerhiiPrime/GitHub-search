@@ -54,7 +54,7 @@ final class SearchPresenter: SearchPresentationLogic {
 
 extension SearchPresenter {
     
-    fileprivate static func _repoCellModels(repo: Repo) -> Search.CellModel {
+    fileprivate static func _repoCellModels(repo: DBRepo) -> Search.CellModel {
         
         let model = RepoCellModel(name: repo.name,
                                   statusIsHidden: true,

@@ -15,11 +15,13 @@ enum RealmConfig {
     
     private static let repositoryConfig = Realm.Configuration.init(fileURL: URL.inDocumentsFolder("repository.realm"),
                                                                   schemaVersion: schemaVersion,
-                                                                  deleteRealmIfMigrationNeeded: true)
+                                                                  deleteRealmIfMigrationNeeded: true,
+                                                                  objectTypes: [DBRepo.self])
     
     private static let sessionConfig = Realm.Configuration.init(fileURL: URL.inDocumentsFolder("session.realm"),
                                                                 schemaVersion: schemaVersion,
-                                                                deleteRealmIfMigrationNeeded: true)
+                                                                deleteRealmIfMigrationNeeded: true,
+                                                                objectTypes: [UserSession.self])
     
     var configuration: Realm.Configuration {
         switch self {

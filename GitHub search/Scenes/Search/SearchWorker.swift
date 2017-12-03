@@ -8,16 +8,30 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
 final class SearchWorker {
 
-    private let _service: NetworkServiceProtocol
+    private let _networkService: NetworkServiceProtocol
+    private let _reposDBService: ReposDBServiceProtocol
     
-    init(service: NetworkServiceProtocol = NetworkService.shared) {
-        _service = service
+    init(networkService: NetworkServiceProtocol = NetworkService.shared,
+         reposDBService: ReposDBServiceProtocol = ReposDBService.shared) {
+        _networkService = networkService
+        _reposDBService = reposDBService
     }
     
     func loadRepos(_ query: String) -> Observable<[Repo]> {        
-        return _service.getRepos(query)
+        return _networkService.getRepos(query)
+    }
+    
+    func getAllRepos() -> Results<DBRepo> {
+        return _reposDBService.getAllRepos()
+    }
+    
+    func saveRepos(repos: [Repo]) {
+        
+        let dbRepos = repos.flatMap(DBRepo.dbRepoFrom)
+        _reposDBService.saveRepos(repos: dbRepos)
     }
 }

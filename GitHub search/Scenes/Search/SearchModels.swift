@@ -17,7 +17,7 @@ enum Search {
         }
 
         struct Response {
-            let repos: [Repo]
+            let repos: [DBRepo]
         }
 
         struct ViewModel {
