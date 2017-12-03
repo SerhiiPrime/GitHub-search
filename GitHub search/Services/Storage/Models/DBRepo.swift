@@ -14,6 +14,7 @@ class DBRepo: Object {
     @objc dynamic var id = 0
     @objc dynamic var name = ""
     @objc dynamic var htmlURLString = ""
+    @objc dynamic var starsCount = 0
     
     override class func primaryKey() -> String? {
         return "id"
@@ -28,6 +29,7 @@ extension DBRepo {
         dbRepo.id = repo.id
         dbRepo.name = repo.name
         dbRepo.htmlURLString = repo.htmlURLString
+        dbRepo.starsCount = repo.starsCount
         return dbRepo
     }
 }

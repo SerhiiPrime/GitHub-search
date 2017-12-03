@@ -16,10 +16,13 @@ struct Repo: Decodable {
     
     let htmlURLString: String
     
+    let starsCount: Int
+    
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case name = "name"
         case htmlURLString = "html_url"
+        case starsCount = "stargazers_count"
     }
 }
 

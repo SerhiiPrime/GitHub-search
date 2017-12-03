@@ -76,7 +76,7 @@ final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
         return result.addNotificationBlock {[weak self] (changes: RealmCollectionChange<Results<DBRepo>>) in
             guard let `self` = self else { return }
         
-            self.repos = Array(self.reposResults)
+            self.repos = Array(self.reposResults).sorted{ $0.starsCount > $1.starsCount }
             self.presenter?.presentRepos(.init(repos: self.repos))
         }
     }
