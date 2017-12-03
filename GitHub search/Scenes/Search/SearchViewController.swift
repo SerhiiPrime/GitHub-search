@@ -151,6 +151,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
             interactor?.didDeleteRepo(.init(index: indexPath.row))
         }
+        
+        // Move element is not implemented because according to the task Repositories should be sorted by stars
     }
 }
 

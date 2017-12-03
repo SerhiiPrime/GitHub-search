@@ -14,6 +14,9 @@ extension SearchPresenter {
     fileprivate static let _authText = "You need to login first to search repositories"
     fileprivate static let _cancelBtn = "Cancel"
     fileprivate static let _loginBtn = "Login"
+    fileprivate static let _trailing = "..."
+    
+    fileprivate static let _maxStrLength = 30
 }
 
 protocol SearchPresentationLogic {
@@ -50,7 +53,7 @@ final class SearchPresenter: SearchPresentationLogic {
                        deletions: response.deletions.map({ IndexPath(row: $0, section: 0)}),
                        modifications: response.modifications.map({ IndexPath(row: $0, section: 0)}))
         
-       viewController?.updateTableWithModels(viewModel)
+        viewController?.updateTableWithModels(viewModel)
     }
     
     func presentBrowser(_ response: Search.SelectRepo.Response) {
@@ -72,9 +75,11 @@ extension SearchPresenter {
     
     fileprivate static func _repoCellModels(repo: DBRepo) -> Search.CellModel {
         
-        let model = RepoCellModel(name: repo.name,
+        let model = RepoCellModel(name: repo.name.trunc(length: _maxStrLength - _trailing.count,
+                                                        trailing: _trailing),
                                   statusIsHidden: !repo.isViewed,
-                                  urlString: repo.htmlURLString)
+                                  urlString: repo.htmlURLString.trunc(length: _maxStrLength - _trailing.count,
+                                                                      trailing: _trailing))
         
         return Search.CellModel(model: model)
     }
