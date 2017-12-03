@@ -67,6 +67,9 @@ final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
         
         repoUrl = url
         presenter?.presentBrowser(.init())
+        
+        // Mark repository as viewed
+        worker.markRepoViewed(repo)
     }
     
     

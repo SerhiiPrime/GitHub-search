@@ -57,7 +57,7 @@ extension SearchPresenter {
     fileprivate static func _repoCellModels(repo: DBRepo) -> Search.CellModel {
         
         let model = RepoCellModel(name: repo.name,
-                                  statusIsHidden: true,
+                                  statusIsHidden: !repo.isViewed,
                                   urlString: repo.htmlURLString)
         
         return Search.CellModel(model: model)

@@ -13,7 +13,9 @@ protocol ReposDBServiceProtocol: class {
     
     func getAllRepos() -> Results<DBRepo>
     
-    func saveRepos(repos: [DBRepo])
+    func saveRepos(_ repos: [DBRepo])
+    
+    func markRepoViewed(_ repo: DBRepo)
 }
 
 class ReposDBService: ReposDBServiceProtocol {
@@ -30,7 +32,7 @@ class ReposDBService: ReposDBServiceProtocol {
         return realm.objects(DBRepo.self)
     }
     
-    func saveRepos(repos: [DBRepo]) {
+    func saveRepos(_ repos: [DBRepo]) {
         
         // We want to have only repos from last search query
         try! realm.write {
@@ -39,6 +41,14 @@ class ReposDBService: ReposDBServiceProtocol {
         
         try! realm.write {
             realm.add(repos)
+        }
+    }
+    
+    func markRepoViewed(_ repo: DBRepo) {
+        
+        try! realm.write {
+            repo.isViewed = true
+            realm.add(repo, update: true)
         }
     }
 }

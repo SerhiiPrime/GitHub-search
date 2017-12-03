@@ -32,6 +32,10 @@ final class SearchWorker {
     func saveRepos(repos: [Repo]) {
         
         let dbRepos = repos.flatMap(DBRepo.dbRepoFrom)
-        _reposDBService.saveRepos(repos: dbRepos)
+        _reposDBService.saveRepos(dbRepos)
+    }
+    
+    func markRepoViewed(_ repo: DBRepo) {
+        _reposDBService.markRepoViewed(repo)
     }
 }

@@ -15,6 +15,7 @@ class DBRepo: Object {
     @objc dynamic var name = ""
     @objc dynamic var htmlURLString = ""
     @objc dynamic var starsCount = 0
+    @objc dynamic var isViewed = false
     
     override class func primaryKey() -> String? {
         return "id"
