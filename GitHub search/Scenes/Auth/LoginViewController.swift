@@ -66,7 +66,7 @@ final class LoginViewController: UIViewController,
 
     // MARK: - Display logic
 
-    // func displaySomething(viewModel: Login.Something.ViewModel) {
-    //
-    // }
+    @IBAction func closeAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
