@@ -10,7 +10,7 @@ import Foundation
 
 struct Repo: Decodable {
     
-    let id: UInt
+    let id: Int
     
     let name: String
     

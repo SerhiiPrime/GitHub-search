@@ -16,6 +16,7 @@
 		142306BD1FD325AB00114BF8 /* RealmConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142306BC1FD325AB00114BF8 /* RealmConfig.swift */; };
 		142306BF1FD325F700114BF8 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142306BE1FD325F700114BF8 /* URL.swift */; };
 		142306C21FD326DC00114BF8 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142306C11FD326DC00114BF8 /* UserSession.swift */; };
+		142306C41FD41D4D00114BF8 /* DBRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142306C31FD41D4D00114BF8 /* DBRepo.swift */; };
 		14E3825D1FD2BACF007AB299 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14E3825C1FD2BACF007AB299 /* AppDelegate.swift */; };
 		14E382621FD2BACF007AB299 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 14E382601FD2BACF007AB299 /* Main.storyboard */; };
 		14E382641FD2BACF007AB299 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 14E382631FD2BACF007AB299 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		142306BC1FD325AB00114BF8 /* RealmConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmConfig.swift; sourceTree = "<group>"; };
 		142306BE1FD325F700114BF8 /* URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
 		142306C11FD326DC00114BF8 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		142306C31FD41D4D00114BF8 /* DBRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBRepo.swift; sourceTree = "<group>"; };
 		14E382591FD2BACF007AB299 /* GitHub search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GitHub search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		14E3825C1FD2BACF007AB299 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		14E382611FD2BACF007AB299 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				142306C11FD326DC00114BF8 /* UserSession.swift */,
+				142306C31FD41D4D00114BF8 /* DBRepo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				14E382801FD2CDD3007AB299 /* APIRouter.swift in Sources */,
 				14E3827A1FD2BC32007AB299 /* SearchWorker.swift in Sources */,
 				14E382921FD2F4E6007AB299 /* CellViewModel.swift in Sources */,
+				142306C41FD41D4D00114BF8 /* DBRepo.swift in Sources */,
 				14E382851FD2D1C6007AB299 /* Repo.swift in Sources */,
 				14E382821FD2CFFE007AB299 /* NetworkService.swift in Sources */,
 				14E382941FD2F54F007AB299 /* UITableView+DequeueReusableCell.swift in Sources */,
