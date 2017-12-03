@@ -17,11 +17,9 @@ protocol NetworkServiceProtocol: class {
 
 class NetworkService: NetworkServiceProtocol {
     
-    static let shared = NetworkService()
-    
     private let networkManager: SessionManager!
     
-    private init() {
+    init() {
         networkManager = Alamofire.SessionManager.default
     }
 

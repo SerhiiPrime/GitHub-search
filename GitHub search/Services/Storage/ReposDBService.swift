@@ -16,15 +16,15 @@ protocol ReposDBServiceProtocol: class {
     func saveRepos(_ repos: [DBRepo])
     
     func markRepoViewed(_ repo: DBRepo)
+    
+    func deleteRepo(_ repo: DBRepo)
 }
 
 class ReposDBService: ReposDBServiceProtocol {
     
-    static let shared = ReposDBService()
-    
     private let realm: Realm!
     
-    private init() {
+    init() {
         realm = try! Realm(configuration: RealmConfig.repository.configuration)
     }
     
@@ -49,6 +49,12 @@ class ReposDBService: ReposDBServiceProtocol {
         try! realm.write {
             repo.isViewed = true
             realm.add(repo, update: true)
+        }
+    }
+    
+    func deleteRepo(_ repo: DBRepo) {
+        try! realm.write {
+            realm.delete(repo)
         }
     }
 }

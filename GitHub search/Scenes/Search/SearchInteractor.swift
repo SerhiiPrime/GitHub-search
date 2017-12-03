@@ -17,6 +17,8 @@ protocol SearchBusinessLogic {
     func verifyUserAuth(_ request: Search.Auth.Request)
     
     func didSelectRepo(_ request: Search.SelectRepo.Request)
+    
+    func didDeleteRepo(_ request: Search.DeleteRepo.Request)
 }
 
 protocol SearchDataStore {
@@ -57,6 +59,8 @@ final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
     }
     
     func verifyUserAuth(_ request: Search.Auth.Request) {
+        
+        //TODO: - Check User Auth
         //presenter?.presentAuth(.init())
     }
     
@@ -72,15 +76,38 @@ final class SearchInteractor: SearchBusinessLogic, SearchDataStore {
         worker.markRepoViewed(repo)
     }
     
+    func didDeleteRepo(_ request: Search.DeleteRepo.Request) {
+
+        guard let repo = repos[optional: request.index] else { return }
+        worker.deleteRepo(repo)
+    }
+    
     
     // MARK: - Notification subscription
     //
     func notificationSubscription(result: Results<DBRepo>) -> NotificationToken {
         return result.addNotificationBlock {[weak self] (changes: RealmCollectionChange<Results<DBRepo>>) in
             guard let `self` = self else { return }
-        
-            self.repos = Array(self.reposResults).sorted{ $0.starsCount > $1.starsCount }
-            self.presenter?.presentRepos(.init(repos: self.repos))
+            
+            self.repos = Array(self.reposResults)
+            
+            switch changes {
+            case .initial:
+
+                self.presenter?.setupTable(.init(repos: self.repos))
+                
+            case .update(_, let deletions, let insertions, let modifications):
+                
+                let response = Search.TableUpdates.Response(repos: self.repos,
+                                                            insertions: insertions,
+                                                            deletions: deletions,
+                                                            modifications: modifications)
+                
+                self.presenter?.updateTable(response)
+                
+            default:
+                break
+            }
         }
     }
 }

@@ -25,6 +25,25 @@ enum Search {
         }
     }
     
+    enum TableUpdates {
+        
+        struct Request {}
+        
+        struct Response {
+            let repos: [DBRepo]
+            let insertions: [Int]
+            let deletions: [Int]
+            let modifications: [Int]
+        }
+        
+        struct ViewModel {
+            let repos: [Search.CellModel]
+            let insertions: [IndexPath]
+            let deletions: [IndexPath]
+            let modifications: [IndexPath]
+        }
+    }
+    
     enum Auth {
         
         struct Request {}
@@ -40,6 +59,17 @@ enum Search {
     }
     
     enum SelectRepo {
+        
+        struct Request {
+            let index: Int
+        }
+        
+        struct Response {}
+        
+        struct ViewModel {}
+    }
+    
+    enum DeleteRepo {
         
         struct Request {
             let index: Int

@@ -12,7 +12,9 @@ import RxSwift
 
 protocol SearchDisplayLogic: class {
     
-    func updateTableWithModels(_ viewModel: Search.Repository.ViewModel)
+    func setupTableWithModels(_ viewModel: Search.Repository.ViewModel)
+    
+    func updateTableWithModels(_ viewModel: Search.TableUpdates.ViewModel)
     
     func displayBrowser(_ viewModel: Search.SelectRepo.ViewModel)
     
@@ -20,7 +22,6 @@ protocol SearchDisplayLogic: class {
 }
 
 final class SearchViewController: UIViewController, SearchDisplayLogic {
-    
     
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var tableView: UITableView!
@@ -74,9 +75,20 @@ final class SearchViewController: UIViewController, SearchDisplayLogic {
     
     // MARK: - Display logic
     
-    func updateTableWithModels(_ viewModel: Search.Repository.ViewModel) {
+    func setupTableWithModels(_ viewModel: Search.Repository.ViewModel) {
         repos = viewModel.repos
         tableView.reloadData()
+    }
+    
+    func updateTableWithModels(_ viewModel: Search.TableUpdates.ViewModel) {
+
+        repos = viewModel.repos
+        
+        tableView.beginUpdates()
+        tableView.insertRows(at: viewModel.insertions, with: .automatic)
+        tableView.deleteRows(at: viewModel.deletions, with: .automatic)
+        tableView.reloadRows(at: viewModel.modifications, with: .automatic)
+        tableView.endUpdates()
     }
     
     func displayBrowser(_ viewModel: Search.SelectRepo.ViewModel) {
@@ -129,6 +141,16 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         interactor?.didSelectRepo(.init(index: indexPath.row))
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            interactor?.didDeleteRepo(.init(index: indexPath.row))
+        }
     }
 }
 

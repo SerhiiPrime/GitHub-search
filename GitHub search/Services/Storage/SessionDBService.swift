@@ -15,11 +15,9 @@ protocol SessionDBServiceProtocol: class {
 
 class SessionDBService: SessionDBServiceProtocol {
     
-    static let shared = SessionDBService()
-    
     private let realmMessenger: Realm!
     
-    private init() {
+    init() {
         realmMessenger = try! Realm(configuration: RealmConfig.session.configuration)
     }
     

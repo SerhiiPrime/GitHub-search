@@ -18,7 +18,9 @@ extension SearchPresenter {
 
 protocol SearchPresentationLogic {
     
-    func presentRepos(_ response: Search.Repository.Response)
+    func setupTable(_ response: Search.Repository.Response)
+    
+    func updateTable(_ response: Search.TableUpdates.Response)
     
     func presentBrowser(_ response: Search.SelectRepo.Response)
     
@@ -31,10 +33,24 @@ final class SearchPresenter: SearchPresentationLogic {
     
     // MARK: - Presentation logic
     
-    func presentRepos(_ response: Search.Repository.Response) {
+    func setupTable(_ response: Search.Repository.Response) {
         
         let repos = response.repos.map { SearchPresenter._repoCellModels(repo: $0) }
-        viewController?.updateTableWithModels(.init(repos: repos))
+        viewController?.setupTableWithModels(.init(repos: repos))
+    }
+    
+    func updateTable(_ response: Search.TableUpdates.Response) {
+        
+        let repos = response.repos.map { SearchPresenter._repoCellModels(repo: $0) }
+        
+        let viewModel = Search
+            .TableUpdates
+            .ViewModel(repos: repos,
+                       insertions: response.insertions.map({ IndexPath(row: $0, section: 0)}),
+                       deletions: response.deletions.map({ IndexPath(row: $0, section: 0)}),
+                       modifications: response.modifications.map({ IndexPath(row: $0, section: 0)}))
+        
+       viewController?.updateTableWithModels(viewModel)
     }
     
     func presentBrowser(_ response: Search.SelectRepo.Response) {

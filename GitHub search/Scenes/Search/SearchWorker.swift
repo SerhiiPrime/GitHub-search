@@ -15,8 +15,8 @@ final class SearchWorker {
     private let _networkService: NetworkServiceProtocol
     private let _reposDBService: ReposDBServiceProtocol
     
-    init(networkService: NetworkServiceProtocol = NetworkService.shared,
-         reposDBService: ReposDBServiceProtocol = ReposDBService.shared) {
+    init(networkService: NetworkServiceProtocol = NetworkService(),
+         reposDBService: ReposDBServiceProtocol = ReposDBService()) {
         _networkService = networkService
         _reposDBService = reposDBService
     }
@@ -26,7 +26,7 @@ final class SearchWorker {
     }
     
     func getAllRepos() -> Results<DBRepo> {
-        return _reposDBService.getAllRepos()
+        return _reposDBService.getAllRepos().sorted(byKeyPath: "starsCount", ascending: false)
     }
     
     func saveRepos(repos: [Repo]) {
@@ -37,5 +37,9 @@ final class SearchWorker {
     
     func markRepoViewed(_ repo: DBRepo) {
         _reposDBService.markRepoViewed(repo)
+    }
+    
+    func deleteRepo(_ repo: DBRepo) {
+        _reposDBService.deleteRepo(repo)
     }
 }
